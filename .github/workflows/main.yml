@@ -23,7 +23,7 @@ jobs:
         node-version: 16.x
 
     - name: Install dependencies
-      working-directory: service
+      working-directory: /home/sa/project/service
       run: npm install
         
     - name: Stop old server (ignore error)
