@@ -3,10 +3,15 @@ plugins {
 	id 'org.springframework.boot' version '3.3.2'
 	id 'io.spring.dependency-management' version '1.1.6'
 	id 'maven-publish'
+	id 'jacoco'
+}
+
+jacoco {
+    toolVersion = "0.8.10" // https://www.jacoco.org/jacoco/trunk/doc/changes.html
 }
 
 group = 'com.example'
-version = '0.0.2-SNAPSHOT'
+version = '0.0.3-SNAPSHOT'
 
 publishing {
     repositories {
@@ -46,4 +51,12 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+	finalizedBy jacocoTestReport // 테스트가 끝난 후 리포트를 생성하도록 설정
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+		html.required = true
+    }
 }
